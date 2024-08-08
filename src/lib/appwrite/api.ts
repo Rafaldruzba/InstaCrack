@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ID, Query } from 'appwrite';
 
 import { appwriteConfig, account, databases, storage, avatars } from './config';
@@ -100,7 +101,6 @@ export async function getCurrentUser() {
 
 		return currentUser.documents[0];
 	} catch (error) {
-		console.log(error);
 		return null;
 	}
 }
@@ -228,6 +228,7 @@ export async function searchPosts(searchTerm: string) {
 }
 
 export async function getInfinitePosts({ pageParam }: { pageParam: number }) {
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const queries: any[] = [Query.orderDesc('$updatedAt'), Query.limit(9)];
 
 	if (pageParam) {
